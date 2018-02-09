@@ -1,7 +1,6 @@
 # GIPHY
 
-Single page web application in which users can interact with the GIPHY API. Uses ReactJS and Redux.
-[Demo](https://drive.google.com/open?id=1AI9Nte2DoOLTmkx8f8WveqwujCEAgRGr)
+Single page web application in which users can interact with the GIPHY [API](https://developers.giphy.com/docs/) . Uses ReactJS and Redux.
 
 ## Getting Started
 
@@ -16,6 +15,8 @@ Change into the giphy directory
 ```
 cd giphy
 ```
+
+Run the following commands to boot up the project locally
 
 ```
 npm install OR yarn install
