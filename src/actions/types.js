@@ -1,0 +1,2 @@
+export const SEARCH_RESULTS = "SEARCH_RESULTS";
+
