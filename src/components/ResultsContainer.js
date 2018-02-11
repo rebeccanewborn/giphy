@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 class ResultsContainer extends React.Component {
   render() {
     const gifResults = this.props.results.map(gif => {
-      return <img src={gif.images.fixed_height.url} key={gif.id} />;
+      return <img src={gif.images.fixed_height.url} key={gif.id} alt="" />;
     });
 
     return <div>{gifResults}</div>;

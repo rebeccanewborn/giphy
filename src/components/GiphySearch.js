@@ -9,26 +9,50 @@ class GiphySearch extends React.Component {
     this.state = { searchTerm: "" };
   }
 
+  componentWillReceiveProps(nextProps) {
+    //new offset prop, submit search with new offset
+    if (this.props.offset !== nextProps.offset) {
+      this.onSubmit(null, null, nextProps.offset);
+    }
+  }
+
   onChange = ev => {
     this.setState({ searchTerm: ev.target.value });
+    if (ev.target.value === "") {
+      this.props.newSearch();
+    }
   };
 
-  onSubmit = ev => {
-    this.props.searchGIPHY(this.state.searchTerm);
+  onSubmit = (ev1, ev2, offset = this.props.offset) => {
+    //if submit button was pressed, dispatch new search action (clear results, reset offset to 0)
+    if (ev1) {
+      ev1.preventDefault();
+      this.props.newSearch();
+    }
+
+    //api call
+    this.props.searchGIPHY(this.state.searchTerm, offset);
   };
 
   render() {
     return (
-      <div>
+      <form onSubmit={this.onSubmit} className="search-form">
         <Input
           placeholder="Search GIPHY..."
           value={this.state.searchTerm}
           onChange={this.onChange}
+          className="search-bar"
         />
-        <Button onClick={this.onSubmit}>Submit Search</Button>
-      </div>
+        <Button type="submit" className="search-submit" basic inverted>
+          Submit Search
+        </Button>
+      </form>
     );
   }
 }
 
-export default connect(null, actions)(GiphySearch);
+const mapStateToProps = state => {
+  return { offset: state.offset };
+};
+
+export default connect(mapStateToProps, actions)(GiphySearch);

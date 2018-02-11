@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { SEARCH_RESULTS } from "../actions/types";
+import { SEARCH_RESULTS, INCREMENT_OFFSET, NEW_SEARCH } from "../actions/types";
 
 const initialResults = [];
 const initialOffset = 0;
@@ -7,7 +7,9 @@ const initialOffset = 0;
 const resultsReducer = (state = initialResults, action) => {
   switch (action.type) {
     case SEARCH_RESULTS:
-      return action.payload;
+      return [...state, ...action.payload];
+    case NEW_SEARCH:
+      return [];
     default:
       return state;
   }
@@ -15,6 +17,10 @@ const resultsReducer = (state = initialResults, action) => {
 
 const offsetReducer = (state = initialOffset, action) => {
   switch (action.type) {
+    case INCREMENT_OFFSET:
+      return (state += 25);
+    case NEW_SEARCH:
+      return 0;
     default:
       return state;
   }

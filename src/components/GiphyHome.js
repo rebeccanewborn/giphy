@@ -1,5 +1,7 @@
 import React from "react";
 import { Container, Header } from "semantic-ui-react";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 //components
 import GiphySearch from "./GiphySearch";
@@ -13,16 +15,25 @@ class GiphyHome extends React.Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
-  handleScroll(ev) {
-    console.log("handling scroll", ev);
-  }
+  handleScroll = ev => {
+    var scrollTop =
+      (document.documentElement && document.documentElement.scrollTop) ||
+      document.body.scrollTop;
+    var scrollHeight =
+      (document.documentElement && document.documentElement.scrollHeight) ||
+      document.body.scrollHeight;
+    var scrolledToBottom = scrollTop + window.innerHeight >= scrollHeight;
+
+    //if reach bottom of page, increment offset, kicking off series of events for infinte scroll feature
+    if (scrolledToBottom) {
+      this.props.incrementOffset();
+    }
+  };
 
   render() {
     return (
       <Container className="giphy-home">
-        <Header as="h1" inverted>
-          Search GIPHY
-        </Header>
+        <h1>Search GIPHY</h1>
         <GiphySearch />
         <ResultsContainer />
       </Container>
@@ -30,4 +41,4 @@ class GiphyHome extends React.Component {
   }
 }
 
-export default GiphyHome;
+export default connect(null, actions)(GiphyHome);
