@@ -17,10 +17,10 @@ class GiphySearch extends React.Component {
   }
 
   onChange = ev => {
-    this.setState({ searchTerm: ev.target.value });
     if (ev.target.value === "") {
       this.props.newSearch();
     }
+    this.setState({ searchTerm: ev.target.value });
   };
 
   onSubmit = (ev1, ev2, offset = this.props.offset) => {

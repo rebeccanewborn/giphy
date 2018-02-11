@@ -24,12 +24,27 @@ body {
 }
 
 .search-form {
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   width: 100%;
+  padding-bottom: 15px;
 }
 .search-bar {
-  width: 80%;
+  width: 87%;
+  display: inline-block;
 }
 .search-button {
-  padding-left: 5em;
+  display: inline-block;
+}
+
+.results-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.result-item {
+  display: inline-block;
+  padding-bottom: 10px;
 }
