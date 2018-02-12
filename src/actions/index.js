@@ -1,5 +1,5 @@
 import { apiSearch } from "../services/api";
-import { SEARCH_RESULTS, INCREMENT_OFFSET, NEW_SEARCH } from "./types";
+import { SEARCH_RESULTS, INCREMENT_OFFSET, RESET_SEARCH } from "./types";
 
 export const searchGIPHY = (term, offset) => {
   return dispatch => {
@@ -13,8 +13,8 @@ export const incrementOffset = () => {
   return { type: INCREMENT_OFFSET };
 };
 
-export const newSearch = () => {
-  return { type: NEW_SEARCH };
+export const resetSearch = () => {
+  return { type: RESET_SEARCH };
 };
 
 // export const moreResults = (term, offset) => {

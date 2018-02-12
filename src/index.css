@@ -34,8 +34,8 @@ body {
   width: 87%;
   display: inline-block;
 }
-.search-button {
-  display: inline-block;
+.search-submit {
+  width: 12%;
 }
 
 .results-container {
@@ -46,5 +46,5 @@ body {
 
 .result-item {
   display: inline-block;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 }

@@ -1,3 +1,3 @@
 export const SEARCH_RESULTS = "SEARCH_RESULTS";
 export const INCREMENT_OFFSET = "INCREMENT_OFFSET";
-export const NEW_SEARCH = "NEW_SEARCH";
+export const RESET_SEARCH = "RESET_SEARCH";

@@ -33,7 +33,7 @@ class GiphyHome extends React.Component {
   render() {
     return (
       <Container className="giphy-home">
-        <h1>Search GIPHY</h1>
+        <h1>Explore GIPHY</h1>
         <GiphySearch />
         <ResultsContainer />
       </Container>

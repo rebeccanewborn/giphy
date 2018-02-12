@@ -17,17 +17,18 @@ class GiphySearch extends React.Component {
   }
 
   onChange = ev => {
-    if (ev.target.value === "") {
-      this.props.newSearch();
-    }
     this.setState({ searchTerm: ev.target.value });
+    if (ev.target.value === "") {
+      this.props.resetSearch();
+    }
   };
 
   onSubmit = (ev1, ev2, offset = this.props.offset) => {
-    //if submit button was pressed, dispatch new search action (clear results, reset offset to 0)
+    //if search form was submitted (as opposed to infinite scroll)
+    //dispatch reset action (clear results, reset offset to 0)
     if (ev1) {
       ev1.preventDefault();
-      this.props.newSearch();
+      this.props.resetSearch();
     }
 
     //api call
@@ -44,7 +45,7 @@ class GiphySearch extends React.Component {
           className="search-bar"
         />
         <Button type="submit" className="search-submit" basic inverted>
-          Submit Search
+          Search
         </Button>
       </form>
     );
