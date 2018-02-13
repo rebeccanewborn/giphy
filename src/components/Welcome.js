@@ -4,7 +4,7 @@ import { Button } from "semantic-ui-react";
 
 const Welcome = props => {
   const onClick = ev => {
-    props.history.push("/home");
+    props.history.push("/search");
   };
   return (
     <div className="welcome-page">

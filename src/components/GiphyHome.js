@@ -1,13 +1,18 @@
 import React from "react";
-import { Container } from "semantic-ui-react";
+import { Container, Menu } from "semantic-ui-react";
+import { withRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
 //components
 import GiphySearch from "./GiphySearch";
-import ResultsContainer from "./ResultsContainer";
+import GiphyRandom from "./GiphyRandom";
 
 class GiphyHome extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { activeMenuItem: "search" };
+  }
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
   }
@@ -30,15 +35,37 @@ class GiphyHome extends React.Component {
     }
   };
 
+  handleMenuClick = ev => {
+    this.setState({ activeMenuItem: ev.target.id });
+    this.props.menuSwitch();
+    this.props.history.push(`/${ev.target.id}`);
+  };
+
   render() {
     return (
       <Container className="giphy-home">
         <h1>Explore GIPHY</h1>
-        <GiphySearch />
-        <ResultsContainer />
+        <Menu pointing secondary inverted>
+          <Menu.Item
+            name="Search"
+            id="search"
+            onClick={this.handleMenuClick}
+            active={this.state.activeMenuItem === "search"}
+          />
+          <Menu.Item
+            name="Random"
+            id="random"
+            onClick={this.handleMenuClick}
+            active={this.state.activeMenuItem === "random"}
+          />
+        </Menu>
+        <Switch>
+          <Route path="/search" component={GiphySearch} />
+          <Route path="/random" component={GiphyRandom} />
+        </Switch>
       </Container>
     );
   }
 }
 
-export default connect(null, actions)(GiphyHome);
+export default withRouter(connect(null, actions)(GiphyHome));

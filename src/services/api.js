@@ -8,3 +8,7 @@ export const apiSearch = (term, offset) => {
     `${baseURL}/search?api_key=${giphyApi}&q=${formattedTerm}&offset=${offset}&limit=24`
   ).then(res => res.json());
 };
+
+export const apiRandom = () => {
+  return fetch(`${baseURL}/random?api_key=${giphyApi}`).then(res => res.json());
+};

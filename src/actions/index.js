@@ -1,5 +1,16 @@
-import { apiSearch } from "../services/api";
-import { SEARCH_RESULTS, INCREMENT_OFFSET, RESET_SEARCH } from "./types";
+import { apiSearch, apiRandom } from "../services/api";
+import {
+  SEARCH_RESULTS,
+  INCREMENT_OFFSET,
+  RESET_SEARCH,
+  SET_RANDOM,
+  CLEAR_RANDOM,
+  MENU_SWITCH
+} from "./types";
+
+export const menuSwitch = () => {
+  return { type: MENU_SWITCH };
+};
 
 export const searchGIPHY = (term, offset) => {
   return dispatch => {
@@ -17,8 +28,14 @@ export const resetSearch = () => {
   return { type: RESET_SEARCH };
 };
 
-// export const moreResults = (term, offset) => {
-//   return dispatch => {
-//     searchWithOffset(term, offset);
-//   };
-// };
+export const randomGIPHY = () => {
+  return dispatch => {
+    apiRandom().then(res => {
+      dispatch({ type: SET_RANDOM, payload: res.data });
+    });
+  };
+};
+
+export const clearRandom = () => {
+  return { type: CLEAR_RANDOM };
+};

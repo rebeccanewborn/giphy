@@ -26,7 +26,6 @@ body {
 .search-bar {
   width: 100%;
   display: inline-block;
-  padding-bottom: 15px;
 }
 
 .results-container {
@@ -35,7 +34,28 @@ body {
   justify-content: space-around;
 }
 
+.result-header {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .result-item {
   display: inline-block;
   padding-bottom: 15px;
+}
+
+.random-wizard,
+.random-image {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.random-image {
+  padding-top: 150px;
+}
+
+.random-wizard {
+  z-index: 999 !important;
 }
