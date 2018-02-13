@@ -7,7 +7,7 @@ import GiphyHome from "./GiphyHome";
 
 class App extends React.Component {
   componentDidMount() {
-    // this.props.history.push("/welcome");
+    this.props.history.push("/welcome");
   }
   render() {
     return (

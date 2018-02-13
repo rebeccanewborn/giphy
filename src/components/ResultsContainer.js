@@ -9,7 +9,7 @@ class ResultsContainer extends React.Component {
           className="result-item"
           src={gif.images.fixed_height.url}
           key={gif.id}
-          alt=""
+          alt="./loading.gif"
         />
       );
     });

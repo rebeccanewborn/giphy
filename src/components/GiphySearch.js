@@ -7,47 +7,50 @@ class GiphySearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = { searchTerm: "" };
+    this.timeout = 0;
   }
 
   componentWillReceiveProps(nextProps) {
     //new offset prop, submit search with new offset
     if (this.props.offset !== nextProps.offset) {
-      this.onSubmit(null, null, nextProps.offset);
+      this.apiSearch(nextProps.offset);
     }
   }
 
   onChange = ev => {
-    this.setState({ searchTerm: ev.target.value });
-    if (ev.target.value === "") {
-      this.props.resetSearch();
+    if (this.timeout) {
+      clearTimeout(this.timeout);
     }
+    if (
+      ev.target.value === "" ||
+      (ev.target.value.length === 1 && this.state.searchTerm !== "")
+    ) {
+      this.props.resetSearch();
+      this.setState({ searchTerm: ev.target.value });
+      return;
+    }
+
+    this.setState({ searchTerm: ev.target.value });
+
+    this.timeout = setTimeout(() => {
+      this.apiSearch();
+    }, 500);
   };
 
-  onSubmit = (ev1, ev2, offset = this.props.offset) => {
-    //if search form was submitted (as opposed to infinite scroll)
-    //dispatch reset action (clear results, reset offset to 0)
-    if (ev1) {
-      ev1.preventDefault();
-      this.props.resetSearch();
-    }
-
+  apiSearch = (offset = this.props.offset) => {
     //api call
     this.props.searchGIPHY(this.state.searchTerm, offset);
+    clearTimeout(this.timeout);
   };
 
   render() {
     return (
-      <form onSubmit={this.onSubmit} className="search-form">
-        <Input
-          placeholder="Search GIPHY..."
-          value={this.state.searchTerm}
-          onChange={this.onChange}
-          className="search-bar"
-        />
-        <Button type="submit" className="search-submit" basic inverted>
-          Search
-        </Button>
-      </form>
+      <Input
+        placeholder="Start typing to explore GIPHY..."
+        value={this.state.searchTerm}
+        onChange={this.onChange}
+        className="search-bar"
+      />
     );
   }
 }
