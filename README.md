@@ -30,22 +30,6 @@ Run the following command to install package dependencies
 npm install
 ```
 
-## Getting an API key
-
-Head over to the GIPHY API page [here](https://developers.giphy.com). Login to your account or signup for a new one. After logging in/signing up, click on Create An App. It will prompt you to give your app a name and a description. After you submit, your API key will appear on your dashboard in your GIPHY developers page.
-
-Within the cloned version of this repo, you can either hardcode your API key into the /src/services/api.js file or create a new directory within src called config with a file called keys.js. Your keys.js file should look something like this:
-
-```
-module.exports = {
-  giphyApi: "YOUR_KEY_HERE"
-};
-```
-
-With your API key replacing "YOUR_KEY_HERE". This second option is recommended if you will be uploading a fork of this repo to github or any other public website.
-
-## Booting up the app locally
-
 Run the following command to boot up the app locally
 
 ```
