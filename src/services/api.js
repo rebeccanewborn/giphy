@@ -1,6 +1,6 @@
-// import { giphyApi } from "../config/keys";
+import { giphyApi } from "../config/keys";
 
-const key = "0JYrjnQDmaINBPjco1qJc90zm0zUaQNV";
+const key = giphyApi || "YOUR_KEY_HERE";
 
 const baseURL = "https://api.giphy.com/v1/gifs";
 
